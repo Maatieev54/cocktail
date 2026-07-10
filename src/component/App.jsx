@@ -1,18 +1,23 @@
-import { Outlet } from "react-router"
-import Header from "./Header"
-import Footer from "./Footer"
-import {Box, Container} from '@mui/material'
+import { Outlet } from "react-router";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import theme from "../theme";
+import { FavoritesProvider } from "../provider/favorites";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function App() {
   return (
-    <Container maxWidth="md">
-      <Header />
-      <Box component="main" sx={{py: 3}}>
-        <Outlet />
-      </Box>
-      <Footer />
-    </Container>
-  )
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <FavoritesProvider>
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </FavoritesProvider>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

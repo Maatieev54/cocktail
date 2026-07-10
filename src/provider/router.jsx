@@ -1,18 +1,21 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 import App from "../component/App";
-import Main from "../component/Main";
-import Contact from "../component/Contact";
+import Home from "../pages/Home";
+import Favorites from "../pages/Favorites";
+import Contact from "../pages/Contact";
+import Error from "../component/Error";
 
 const router = createBrowserRouter([
-    {path: '/', element: <App />, children: [
-        {path: '/', element: <Navigate to="/main" />},
-        {path: 'main', element: <Main />},
-        {path: 'cocktail', element: <Main />, children: [
-            {path: ':id', element: <Main />}
-        ]},
-        {path: 'contact', element: <Contact />},
-        {path: '*', element: <Error />},
-    ]}
-])
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "favorites", element: <Favorites /> },
+      { path: "contact", element: <Contact /> },
+      { path: "*", element: <Error /> },
+    ],
+  },
+]);
 
-export default router
+export default router;
